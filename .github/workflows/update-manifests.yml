@@ -55,7 +55,8 @@ jobs:
                   if artifact.name != f"{name}-{version}.vsix":
                       raise ValueError(f"{artifact} filename does not match its package version")
                   match = version_pattern.fullmatch(version)
-                  if not match or (channel == "stable" and match.group(4) is not None) or (channel != "stable" and channel not in (match.group(4) or "").split(".")):
+              prerelease = match.group(4) if match else None
+              if not match or (channel == "stable" and prerelease is not None) or (channel != "stable" and prerelease is not None and channel not in prerelease.split(".")):
                       raise ValueError(f"{artifact} version does not belong to the {channel} channel")
                   candidates.append((version_key(version), version, artifact))
               if not candidates:

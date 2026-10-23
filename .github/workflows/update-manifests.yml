@@ -1,0 +1,80 @@
+name: Refresh channel update manifests
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'channels/stable/vecto-coder-*.vsix'
+      - 'channels/beta/vecto-coder-beta-*.vsix'
+      - 'channels/test/vecto-coder-test-*.vsix'
+      - '.github/workflows/update-manifests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-manifests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate channel packages and write latest manifests
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import re
+          import zipfile
+          from pathlib import Path
+
+          repository = "developeraman-official/vecto-coder"
+          expected_names = {"stable": "vecto-coder", "beta": "vecto-coder-beta", "test": "vecto-coder-test"}
+          version_pattern = re.compile(r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-([0-9A-Za-z.-]+))?$")
+
+          def version_key(version):
+              match = version_pattern.fullmatch(version)
+              if not match:
+                  raise ValueError(f"Invalid extension version: {version}")
+              major, minor, patch, prerelease = match.groups()
+              parts = tuple((0, int(part)) if part.isdigit() else (1, part) for part in (prerelease or "").split(".") if part)
+              return int(major), int(minor), int(patch), (1,) if prerelease is None else (0, parts)
+
+          updated_channels = []
+          for channel, expected_name in expected_names.items():
+              folder = Path("channels") / channel
+              candidates = []
+              for artifact in folder.glob("*.vsix"):
+                  if artifact.name == "latest.vsix":
+                      continue
+                  with zipfile.ZipFile(artifact) as package:
+                      metadata = json.loads(package.read("extension/package.json"))
+                  name = metadata.get("name")
+                  version = metadata.get("version")
+                  if name != expected_name or metadata.get("publisher") != "developeraman":
+                      raise ValueError(f"{artifact} has an extension identity for the wrong channel")
+                  if artifact.name != f"{name}-{version}.vsix":
+                      raise ValueError(f"{artifact} filename does not match its package version")
+                  match = version_pattern.fullmatch(version)
+                  if not match or (channel == "stable" and match.group(4) is not None) or (channel != "stable" and channel not in (match.group(4) or "").split(".")):
+                      raise ValueError(f"{artifact} version does not belong to the {channel} channel")
+                  candidates.append((version_key(version), version, artifact))
+              if not candidates:
+                  continue
+              _, version, artifact = max(candidates, key=lambda item: item[0])
+              manifest = {"channel": channel, "extensionId": f"developeraman.{expected_name}", "version": version, "file": artifact.name, "sha256": hashlib.sha256(artifact.read_bytes()).hexdigest()}
+              (folder / "latest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+              (folder / "latest.vsix").write_bytes(artifact.read_bytes())
+              updated_channels.append(channel)
+          if not updated_channels:
+              raise ValueError("No versioned VSIX package found in any release channel")
+          print("Updated release channels: " + ", ".join(updated_channels))
+          PY
+      - name: Commit manifests
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add channels/*/latest.json channels/*/latest.vsix
+          if ! git diff --cached --quiet; then
+            git commit -m "Update release channel manifests"
+            git push
+          fi

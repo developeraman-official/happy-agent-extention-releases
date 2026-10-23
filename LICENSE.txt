@@ -1,0 +1,52 @@
+VECTO CODER PROPRIETARY LICENSE
+
+Copyright (c) 2026 Developeraman. All rights reserved.
+Copyright (c) 2025 opencode
+Copyright (c) 2026 Kilo Code
+
+This license applies only to original Vecto Coder software, documentation,
+branding, and other materials owned by Developeraman. Third-party components
+are excluded and remain governed by the licenses identified in their notices.
+
+LIMITED PERSONAL USE
+
+Subject to these terms, you may install and run one unmodified copy of the
+Vecto Coder proprietary components for personal, non-commercial evaluation.
+You may make only the copies technically necessary to download, install, and
+run that copy on devices you control. This limited permission does not permit
+any other copying or reproduction.
+
+RESTRICTIONS
+
+Except for the limited permission above or a separate written agreement signed
+by Developeraman, you may not copy, modify, adapt, translate, create derivative
+works from, reverse engineer, decompile, disassemble, publish, distribute,
+resell, sublicense, rent, lease, provide as a service, or otherwise make the
+Vecto Coder proprietary components available to another person. You may not
+use those components for commercial, organizational, or business purposes.
+
+COMMERCIAL AND PARTNERSHIP USE
+
+Commercial, organizational, business, redistribution, modification, resale,
+and partnership use requires advance written authorization and a separate
+written license or partnership agreement signed by Developeraman. No permission
+is granted by implication, prior discussion, payment, or possession of a copy.
+
+THIRD-PARTY MATERIALS
+
+This license does not change or restrict rights granted by third-party
+licenses. Microsoft-derived portions identified in source-file notices remain
+under the MIT License in MICROSOFT_CODE_LICENSE.txt. Kilo Code and OpenCode
+portions remain under the MIT License in KILO_CODE_LICENSE.txt. Those licenses
+apply to their covered portions only and must be preserved with those portions.
+
+PRIOR DISTRIBUTIONS
+
+Copies distributed before this license was introduced remain governed by the
+license supplied with those copies. This license does not revoke rights already
+granted under an earlier distribution license.
+
+NO WARRANTY
+
+The Vecto Coder proprietary components are provided "AS IS", to the maximum
+extent permitted by applicable law, without warranties and liability of any kind.

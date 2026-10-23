@@ -2,6 +2,8 @@
 
 This guide covers setup and use of Vecto Coder in VS Code. For data handling and security controls, see [Security and privacy](./SECURITY.md).
 
+Sponsored recommendations are optional and can be disabled with the `Vecto Coder: Idlen Ads Enabled` setting. When enabled, Vecto Coder sends derived topic/category/intent signals and a random chat-session identifier to Idlen for ad selection; raw prompts, responses, files, and workspace paths are not sent to Idlen. Ads appear separately from the conversation.
+
 ## Open the chat
 
 Open the Vecto Coder icon in the Activity Bar, or run **Vecto Coder: Open Chat** from the Command Palette (`Ctrl+Shift+P` on Windows/Linux, `Cmd+Shift+P` on macOS). Open a workspace folder so the agent can use workspace tools.

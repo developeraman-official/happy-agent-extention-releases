@@ -14,6 +14,8 @@ Edit snapshots used for review and revert are stored in local editor extension s
 
 ## Information sent to providers
 
+When sponsored recommendations are enabled, Vecto Coder may send derived topic, category, and intent signals from a completed response, plus a random chat-session identifier, to Idlen for ad selection. Context extraction runs locally; raw prompts, model responses, file contents, and workspace paths are not sent to Idlen. The ad service may receive impression and click events to measure delivery. Ads are displayed separately from the conversation and are not added to chat history or sent to the AI model. You can disable this feature with the `Vecto Coder: Idlen Ads Enabled` setting.
+
 When you submit a request, Vecto Coder sends the prompt and the conversation or workspace context selected for that request to the AI provider and model you selected. This may include file excerpts, tool definitions, agent/skill guidance, and results returned by tools. If you ask the Extension to fetch a public website, retrieved page text may also be included in the provider request. Provider credentials are sent to the relevant provider for authentication.
 
 Each provider independently determines how it processes, retains, reviews, and may use prompts, outputs, and other request data, including whether data may be used to improve or train its services. These practices vary by provider, account type, model, endpoint, and settings, and may change. Vecto Coder cannot set or guarantee a provider’s retention, training, security, or deletion practices. Read the provider’s current privacy notice and terms before sending data, and do not send confidential or regulated information unless your agreements and provider settings permit it.

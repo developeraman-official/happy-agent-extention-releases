@@ -98,6 +98,8 @@ On first startup, Vecto Coder creates `~/.vecto/` and an empty `~/.vecto/.env` t
 
 ## Privacy and safety
 
+Vecto Coder may show occasional text-only sponsored recommendations. When enabled, derived topic/category/intent signals and a random chat-session identifier are sent to Idlen for ad selection, and impression/click events may be measured. Raw prompts, model responses, file contents, and workspace paths are not sent to Idlen. Disable sponsored recommendations with the `Vecto Coder: Idlen Ads Enabled` setting.
+
 - Only the workspace context needed to answer your request is sent to the provider you selected.
 - **Free AI** sends prompts and related context to third-party providers, which may log or use them to improve their services. Don't send confidential or personal data through this route.
 - File changes are tracked for review, and permission modes control which local paths and commands the agent can use.

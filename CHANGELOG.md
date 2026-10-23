@@ -2,6 +2,11 @@
 
 All notable Vecto Coder changes are recorded here. Versions follow SemVer. Stable releases use `X.Y.Z`; beta and test releases use `X.Y.Z-beta.N` and `X.Y.Z-test.N` and are packaged under separate extension identities.
 
+## 1.1.1
+
+- Refresh the marketplace and VSIX README with current installation, workflow, permissions, provider, and privacy guidance.
+- Add stable-ID active-chat history retrieval with eviction and stale-read signals, bounded excerpts, and secret redaction.
+
 ## 1.0.10
 
 - Run install, build, and test commands from the selected workspace project directory, with workspace-bound path validation and reusable integrated terminals per project.

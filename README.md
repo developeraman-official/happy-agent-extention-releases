@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/developeraman-official/vecto-coder/master/media/vecto-coder-banner.png" alt="Vecto Coder — an AI coding agent for your VS Code workspace" width="100%">
+  <img src="https://raw.githubusercontent.com/developeraman-official/vecto-coder/master/media/brand/vecto-coder-readme-banner.png" alt="Vecto Coder — an AI coding agent for your VS Code workspace" width="100%">
 </p>
 
 # Vecto Coder
